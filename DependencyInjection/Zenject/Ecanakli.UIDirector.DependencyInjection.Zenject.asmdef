@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.DependencyInjection.Zenject",
+    "rootNamespace": "Ecanakli.UIDirector.DependencyInjection",
+    "references": ["Ecanakli.UIDirector", "Zenject"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["Zenject-usage.dll"],
+    "autoReferenced": true,
+    "defineConstraints": ["ECANAKLI_UIDIRECTOR_DI_ZENJECT"],
+    "versionDefines": [{ "name": "com.svermeulen.extenject", "expression": "9.0.0", "define": "ECANAKLI_UIDIRECTOR_DI_ZENJECT" }],
+    "noEngineReferences": false
+}

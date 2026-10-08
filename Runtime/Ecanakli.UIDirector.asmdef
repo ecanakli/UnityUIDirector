@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector",
+    "rootNamespace": "Ecanakli.UIDirector",
+    "references": ["UniTask", "UnityEngine.UI", "Unity.InputSystem"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [{ "name": "com.unity.inputsystem", "expression": "", "define": "ECANAKLI_UIDIRECTOR_INPUT_SYSTEM" }],
+    "noEngineReferences": false
+}

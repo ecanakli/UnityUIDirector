@@ -1,0 +1,36 @@
+{
+    "name": "Ecanakli.UIDirector.Samples.DOTweenUsage",
+    "rootNamespace": "Ecanakli.UIDirector.Samples.DOTweenUsage",
+    "references": [
+        "Ecanakli.UIDirector",
+        "Ecanakli.UIDirector.DOTween",
+        "UniTask",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "DOTween.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "DOTWEEN || ECANAKLI_UIDIRECTOR_DOTWEEN"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.demigiant.dotween",
+            "expression": "",
+            "define": "ECANAKLI_UIDIRECTOR_DOTWEEN"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "",
+            "define": "UIDIRECTOR_SAMPLES_INPUT_SYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

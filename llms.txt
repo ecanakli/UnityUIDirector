@@ -1,0 +1,63 @@
+# UIDirector
+
+> UIDirector is a Unity package that runs uGUI screens, popups and system overlays from prefabs under one persistent root. A view is opened by a typed key, every open takes an owner `CancellationToken`, `ShowAsync` completes with a result that says how the view ended (it never throws for what happens to a view), one back rule decides what a back press does, and an optional queue presents popups one at a time by priority.
+
+If the `Documentation~/` pages below cannot be opened, read `llms-full.txt` instead. It holds the README, every page listed here in this order, the sample READMEs, the stand-in types the samples use and the changelog in one file. It starts with a Contents index that gives the first line number of each part, so a tool can read it in ranges.
+
+Facts to know before reading further:
+
+- Package `com.ecanakli.uidirector`, version 0.1.0, Unity 6000.0 or newer. Repository: https://github.com/ecanakli/UnityUIDirector (the package is at the repository root). Install a tag: `https://github.com/ecanakli/UnityUIDirector.git#v0.1.0`.
+- UniTask is required and must be installed first, because a package installed from a git URL cannot declare it as a dependency. `com.unity.ugui` is a declared dependency. Addressables, DOTween, Zenject or Extenject and the Input System are optional. The Addressables, DOTween and Zenject integration assemblies compile only when their library is present, and the core has no reference to them. The core reads the back key through the Input System when `com.unity.inputsystem` is installed (`ECANAKLI_UIDIRECTOR_INPUT_SYSTEM`) and through the legacy input manager otherwise.
+- Namespaces: `Ecanakli.UIDirector` holds every type user code calls, including the Addressables and DOTween types. `Ecanakli.UIDirector.DependencyInjection` holds `NavigatorInstaller`. Assemblies: `Ecanakli.UIDirector`, `Ecanakli.UIDirector.Addressables`, `Ecanakli.UIDirector.DOTween`, `Ecanakli.UIDirector.DependencyInjection.Zenject`.
+- The core types: `ViewRoot` (the component on the canvas; `ViewRoot.Navigator` is the `INavigator`), `INavigator` (`Open`, `ShowAsync`, `Back`, `CloseTo`, `CloseAll`, `HoldInput`, `AddObserver`, `AddCatalog`, `PreloadAsync`, `RootToken`), `ViewKey<TArgs, TResult>` (an id plus the argument and result types; `NoArgs` and `NoResult` mean none), `ViewCatalog` with `ViewEntry` rows, `ViewBehaviour<TArgs, TResult>` (the base class of a view; `IView<TArgs, TResult>` is the interface), `ViewScope` (what the package ends for a view), `ViewResult<TResult>` (`WasShown`, `Reason`, `Rejected`, `HasValue`, `Value`), `ViewHandle`, `OpenOptions`, `ViewLayer`, `ViewQueue`, `IViewObserver` and `ViewTransition`.
+- Three layers are built in: `screens` (a history stack that takes back), `popups` (modal, shared backdrop, takes back, closed by navigation) and `system` (modal, blocks input, swallows back). A project adds layers in code through `ViewRootSetup.ExtraLayers`.
+- The main editor tools are `GameObject > UI > UIDirector Root` (and `UIDirector Root (Camera)`), `Window > UIDirector`, `Tools/UIDirector/Validate Catalogs` and `Tools/UIDirector/Documentation`. Diagnostics are `UIDIRECTOR101` to `UIDIRECTOR126`: 101 to 120 and 126 are logged at run time in the editor and development builds, 121 to 124 only by the validator, and 125 by the validator and by the root when a catalog with an empty or whitespace-only row id is registered.
+- Every C# example is copied from `Samples~/` or `Tests/`. Blocks marked as signatures show declarations without bodies, and blocks marked "before" show hand-written code that is not usage of the package.
+
+The rules that bite:
+
+1. Every open takes a required owner token: `navigator.Open(key, owner)` and `ShowAsync(key, args, owner)`. When the owner ends, the view ends and snaps away with `CloseReason.OwnerEnded`. Use `navigator.RootToken` for "as long as the UI exists", a screen's open-scope token for a popup that must not outlive the screen (but not for a view that replaces or pops that same screen, such as a reopen in place: pass `RootToken`), and `CancellationToken.None` for "until someone closes it". The owner never cancels an awaiter.
+2. Outcomes are data. `ShowAsync` always completes with a `ViewResult<TResult>`; a back press, a backdrop tap, a refusal and an ended owner carry no value. Check `HasValue` before `Value` (for a `bool` the default `false` looks like an answer). `Open` only accepts the request and returns a `ViewHandle` struct at once; test `IsAlive`, not null.
+3. A view has hooks that only begin things (`OnOpen`, optional `OnVisible`, optional `OnBack`) and no close hook. Bind listeners, events, disposables and tasks to the `ViewScope` you are given, and the package removes them when the scope ends. Read arguments and `Navigator` in `OnOpen`, not in `Awake` or `OnEnable`. Never call `Complete` or `Close` inside `OnOpen`; use `Decline` (`UIDIRECTOR118`).
+4. Each layer runs one operation at a time, in the order requests were accepted, and a started step is never interrupted. A close asked for during a show transition runs after it.
+5. Opening a screen ends the popups that were accepted earlier, at once and without a hide transition, with `CloseReason.Navigated` (`ClosedByNavigation`). Returning to a screen already in the stack with a key without arguments does not run its `OnOpen` again; use `OnVisible` for work that repeats. A key with arguments reopens in place and runs `OnOpen` again with the new arguments, without a transition.
+6. `Back()` returns `true` when something handled the press. On the bottom screen it returns `false` and closes nothing; `BackInput` then raises `Unhandled`. Before the root is initialized, `BackInput` ignores the key: it neither calls `Back()` nor raises `Unhandled`, and it never initializes the root itself. A request still waiting or loading on a layer that takes back is withdrawn first (`NotShown` / `RejectReason.Cancelled`). Otherwise back is swallowed while the input shield is up and while the back target is in a transition.
+7. A view prefab needs a `ViewHost`, a `Canvas` and a `GraphicRaycaster` on its root, and the view component on that same root. Keys live in a static class marked `[ViewKeys]`; ids are unique across all catalogs on the root; the key's types must match the view's. Run `Tools/UIDirector/Validate Catalogs` before you press Play.
+8. The scene needs an `EventSystem` or views get no input (`UIDIRECTOR116`). The root menu adds one; create it before the root initializes when you build the scene in code.
+9. If you call `ViewRoot.Initialize` from code, turn `Initialize On Awake` off. Reading `ViewRoot.Navigator` before `Initialize` initializes the root with defaults. Deactivating the root or a layer object ends every view under it. To hide the whole UI, set the alpha of a `CanvasGroup` on the root to 0 and take a `HoldInput`; `blocksRaycasts = false` does not reach nested canvases and a disabled root `Canvas` hides nothing.
+10. Main thread only. Opening, registering and queueing throw on another thread; `Remove` on a registration, `CloseAll`, `Trim` and `ViewQueue.Clear` are posted to the main thread instead.
+
+## Pages
+
+Reading order. Each link is one page of `Documentation~/`; the README holds the requirements, the install steps and a five-minute start.
+
+- [Documentation home](Documentation~/index.md): every page grouped in reading order.
+- [Concepts](Documentation~/Concepts.md): the root and its layers, views, rows and keys, a request from start to finish, outcomes as data, owners and scopes.
+- [Root canvas](Documentation~/Root-Canvas.md): creating the root, every `ViewRoot` field, `ViewRootSetup`, overlay and camera roots, the sorting band, your own layer.
+- [Catalogs and keys](Documentation~/Catalogs-and-Keys.md): catalog rows, typed keys, giving catalogs to the root, adding one at run time, unique ids, the validator.
+- [View authoring](Documentation~/View-Authoring.md): writing a view on the base class or the interfaces, every hook, `Decline`, `Complete`, scopes, kept instances, the prefab structure.
+- [Opening and results](Documentation~/Opening-and-Results.md): `Open` against `ShowAsync`, `OpenOptions`, the handle, reading a result, owners, closing many views.
+- [FAQ](Documentation~/FAQ.md): short answers, each linking to the page that explains it.
+- [Navigation and back](Documentation~/Navigation-and-Back.md): opening screens forward, returning to one, `CloseTo`, the order `Back()` decides in, `BackPolicy`, `BackInput`, an older UI beside the package.
+- [Popups and backdrop](Documentation~/Popups-and-Backdrop.md): awaiting a popup's answer, a confirm popup, the backdrop, the input shield, `RejectWhenBusy`.
+- [System overlays](Documentation~/System-Overlays.md): a blocking overlay around a piece of work, back while it is up, closing it and waiting until it is gone.
+- [Transitions](Documentation~/Transitions.md): the fade, scale and slide transitions, time, writing a custom `ViewTransition` and the contract it keeps.
+- [Queue](Documentation~/Queue.md): `ViewQueue`, priorities, gates, holds, ways a request ends unshown (including a key whose row is on another layer), observing, a feature that adds its own catalog.
+- [Events and analytics](Documentation~/Events-and-Analytics.md): `IViewObserver`, every event kind and field, the order at close, an analytics adapter, dispatch cost.
+- [Input and platform](Documentation~/Input-and-Platform.md): the EventSystem, what the input shield blocks, double taps, `HoldInput`, time scale 0, the back button, Enter Play Mode options.
+- [Migration](Documentation~/Migration.md): moving a project that has a UI manager of its own to UIDirector one view at a time while both run.
+- [DOTween](Documentation~/DOTween.md): turning the integration on, `TweenTransition`, a kill-safe custom transition, the `DOTween.KillAll()` trap.
+- [Assets and Addressables](Documentation~/Assets-and-Addressables.md): views by asset key, `AddressablesViewProvider`, preload leases, keep and trim, load failures, writing a provider.
+- [Zenject](Documentation~/Zenject.md): turning the integration on, `NavigatorInstaller`, injection into views, the SceneContext and the EventSystem.
+- [API reference](Documentation~/API-Reference.md): every public type and member as declared, with its assembly, namespace and the guide that teaches it.
+- [Diagnostics](Documentation~/Diagnostics.md): the console line, `Window > UIDirector`, the text read-out, the error handler, the catalog validator.
+- [Troubleshooting](Documentation~/Troubleshooting.md): one section per `UIDIRECTOR1xx` id with cause and fix, then symptoms that carry no id.
+- [Performance](Documentation~/Performance.md): what the package guarantees about cost, which test holds each guarantee.
+- [Threading](Documentation~/Threading.md): which calls throw off the main thread, which are posted, where an awaited result resumes, custom providers and transitions.
+- [Limitations](Documentation~/Limitations.md): what the package does not do, the provisional defaults.
+- [Architecture](Documentation~/Design/Architecture.md): why the package is shaped this way: requests and phases, the runner, the shield, back resolution, scopes, the queue, the provider seam.
+- [ADR-001 Outcomes as data](Documentation~/Design/Decisions/ADR-001-Outcomes-As-Data.md): `ShowAsync` always completes with a result and never throws for what happens to a view.
+- [ADR-002 Strict serialization](Documentation~/Design/Decisions/ADR-002-Strict-Serialization.md): one operation at a time per layer and a started step is never interrupted.
+- [ADR-003 Begin-only hooks and scopes](Documentation~/Design/Decisions/ADR-003-Begin-Only-Hooks-And-Scopes.md): hooks only begin things and the package ends what a scope holds.
+- [ADR-004 The queue sits above the navigator](Documentation~/Design/Decisions/ADR-004-Queue-Above-The-Navigator.md): `ViewQueue` talks to the navigator through `INavigator` only.
+- [ADR-005 Token owners](Documentation~/Design/Decisions/ADR-005-Token-Owners.md): every request and registration takes a required `CancellationToken` as its owner.

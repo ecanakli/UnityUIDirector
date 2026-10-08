@@ -1,0 +1,58 @@
+{
+  "name": "com.ecanakli.uidirector",
+  "version": "0.1.0",
+  "displayName": "UIDirector",
+  "description": "Runs your Screens, Popups & Overlays. Prefab views under one persistent root, typed keys, awaitable results, one back rule and a priority queue. Requires UniTask.",
+  "unity": "6000.0",
+  "dependencies": {
+    "com.unity.ugui": "2.0.0"
+  },
+  "keywords": [
+    "ui",
+    "ugui",
+    "navigation",
+    "screens",
+    "popups",
+    "queue",
+    "unitask"
+  ],
+  "samples": [
+    {
+      "displayName": "Basic Usage",
+      "description": "Core only: a confirm popup with a result, three screens with back, a system overlay, a custom layer and transition, events and errors. Needs TextMesh Pro Essential Resources.",
+      "path": "Samples~/BasicUsage"
+    },
+    {
+      "displayName": "Queue Usage",
+      "description": "A priority queue for popups: startup notices, a gate that denies, a hold while a flow runs, a feature catalog added at run time. Needs TextMesh Pro Essential Resources.",
+      "path": "Samples~/QueueUsage"
+    },
+    {
+      "displayName": "Addressables Usage",
+      "description": "Requires com.unity.addressables. Views loaded by address, a preload lease and trimming kept instances.",
+      "path": "Samples~/AddressablesUsage"
+    },
+    {
+      "displayName": "DOTween Usage",
+      "description": "Requires DOTween. TweenTransition on a popup and a custom transition built on DOTween.",
+      "path": "Samples~/DOTweenUsage"
+    },
+    {
+      "displayName": "Zenject Usage",
+      "description": "Requires the Zenject integration to be active. The navigator bound in a SceneContext and views that receive injections.",
+      "path": "Samples~/ZenjectUsage"
+    }
+  ],
+  "author": {
+    "name": "Emre Canakli",
+    "url": "https://github.com/ecanakli"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecanakli/UnityUIDirector.git"
+  },
+  "documentationUrl": "https://github.com/ecanakli/UnityUIDirector/blob/main/Documentation~/index.md",
+  "changelogUrl": "https://github.com/ecanakli/UnityUIDirector/blob/main/CHANGELOG.md",
+  "licensesUrl": "https://github.com/ecanakli/UnityUIDirector/blob/main/LICENSE.md"
+}

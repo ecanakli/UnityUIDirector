@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71c6b3fdfd6b4826b19e1b5a920e24d, type: 3}
+  m_Name: ZenjectUsageCatalog
+  m_EditorClassIdentifier: Ecanakli.UIDirector::Ecanakli.UIDirector.ViewCatalog
+  _entries:
+  - _id: scoreboard
+    _prefab: {fileID: 8187835266633088725, guid: 9f1122eb7f3a84a36850c60d1a5af8e7, type: 3}
+    _assetKey: 
+    _layerId: screens
+    _retention: 1
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: reset-score
+    _prefab: {fileID: 4600926556354181467, guid: 03b528c09b88a4182a344c55a5603c0a, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 1
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0

@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71c6b3fdfd6b4826b19e1b5a920e24d, type: 3}
+  m_Name: QueueUsageCatalog
+  m_EditorClassIdentifier: Ecanakli.UIDirector::Ecanakli.UIDirector.ViewCatalog
+  _entries:
+  - _id: lobby
+    _prefab: {fileID: 7589620076777415464, guid: ceb3e0051cc1c46679cf250b1fe513ba, type: 3}
+    _assetKey: 
+    _layerId: screens
+    _retention: 1
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: notice
+    _prefab: {fileID: 1229818019664435550, guid: 65b296dd8fe484db4a3e85c72f7e1cc2, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: ask
+    _prefab: {fileID: 7131858294546149347, guid: 8a22d049baeda4294a06310c61b731d3, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 1
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: tutorial-tip
+    _prefab: {fileID: 4948865929282145280, guid: 4af060e0cf60046a681ab62456abdf79, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0

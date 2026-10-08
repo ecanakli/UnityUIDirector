@@ -1,0 +1,37 @@
+{
+    "name": "Ecanakli.UIDirector.Samples.ZenjectUsage",
+    "rootNamespace": "Ecanakli.UIDirector.Samples.ZenjectUsage",
+    "references": [
+        "Ecanakli.UIDirector",
+        "Ecanakli.UIDirector.DependencyInjection.Zenject",
+        "UniTask",
+        "Zenject",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Zenject-usage.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "ECANAKLI_UIDIRECTOR_DI_ZENJECT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.svermeulen.extenject",
+            "expression": "9.0.0",
+            "define": "ECANAKLI_UIDIRECTOR_DI_ZENJECT"
+        },
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "",
+            "define": "UIDIRECTOR_SAMPLES_INPUT_SYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

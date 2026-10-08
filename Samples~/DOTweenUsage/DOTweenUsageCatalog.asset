@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71c6b3fdfd6b4826b19e1b5a920e24d, type: 3}
+  m_Name: DOTweenUsageCatalog
+  m_EditorClassIdentifier: Ecanakli.UIDirector::Ecanakli.UIDirector.ViewCatalog
+  _entries:
+  - _id: welcome
+    _prefab: {fileID: 1908315250819103874, guid: 0fccd2695eda74ca998d565d94359131, type: 3}
+    _assetKey: 
+    _layerId: screens
+    _retention: 1
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: hint
+    _prefab: {fileID: 6716167417805765129, guid: 69b9b7dbdaa25469da2f0bcb2022e19a, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 1
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
+  - _id: card
+    _prefab: {fileID: 7973968172377446913, guid: a004d088befac42f590125f94fc436af, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0

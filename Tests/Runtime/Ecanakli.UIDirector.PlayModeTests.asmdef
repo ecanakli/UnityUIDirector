@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.PlayModeTests",
+    "rootNamespace": "Ecanakli.UIDirector.Tests",
+    "references": ["Ecanakli.UIDirector", "Ecanakli.UIDirector.TestUtilities", "UniTask", "UnityEngine.UI", "Unity.TextMeshPro", "Unity.InputSystem", "Unity.InputSystem.TestFramework", "UnityEngine.TestRunner"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["nunit.framework.dll"],
+    "autoReferenced": false,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "versionDefines": [{ "name": "com.unity.inputsystem", "expression": "", "define": "ECANAKLI_UIDIRECTOR_INPUT_SYSTEM" }],
+    "noEngineReferences": false
+}

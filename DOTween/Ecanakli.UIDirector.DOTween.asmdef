@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.DOTween",
+    "rootNamespace": "Ecanakli.UIDirector",
+    "references": ["Ecanakli.UIDirector", "UniTask"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["DOTween.dll"],
+    "autoReferenced": true,
+    "defineConstraints": ["DOTWEEN || ECANAKLI_UIDIRECTOR_DOTWEEN"],
+    "versionDefines": [{ "name": "com.demigiant.dotween", "expression": "", "define": "ECANAKLI_UIDIRECTOR_DOTWEEN" }],
+    "noEngineReferences": false
+}

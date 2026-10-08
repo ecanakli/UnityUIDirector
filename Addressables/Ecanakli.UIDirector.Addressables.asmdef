@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.Addressables",
+    "rootNamespace": "Ecanakli.UIDirector",
+    "references": ["Ecanakli.UIDirector", "UniTask", "Unity.Addressables", "Unity.ResourceManager"],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": ["ECANAKLI_UIDIRECTOR_ADDRESSABLES"],
+    "versionDefines": [{ "name": "com.unity.addressables", "expression": "", "define": "ECANAKLI_UIDIRECTOR_ADDRESSABLES" }],
+    "noEngineReferences": false
+}

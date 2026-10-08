@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.Editor.Tests",
+    "rootNamespace": "Ecanakli.UIDirector.EditorTools.Tests",
+    "references": ["Ecanakli.UIDirector", "Ecanakli.UIDirector.Editor", "Ecanakli.UIDirector.TestUtilities", "UniTask", "UnityEngine.UI", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": ["nunit.framework.dll"],
+    "autoReferenced": false,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "versionDefines": [{ "name": "com.unity.addressables", "expression": "", "define": "ECANAKLI_UIDIRECTOR_ADDRESSABLES" }],
+    "noEngineReferences": false
+}

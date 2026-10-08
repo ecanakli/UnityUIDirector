@@ -1,0 +1,14 @@
+{
+    "name": "Ecanakli.UIDirector.Editor",
+    "rootNamespace": "Ecanakli.UIDirector.EditorTools",
+    "references": ["Ecanakli.UIDirector", "UnityEngine.UI", "Unity.InputSystem", "Unity.Addressables", "Unity.Addressables.Editor"],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [{ "name": "com.unity.addressables", "expression": "", "define": "ECANAKLI_UIDIRECTOR_ADDRESSABLES" }, { "name": "com.unity.inputsystem", "expression": "", "define": "ECANAKLI_UIDIRECTOR_INPUT_SYSTEM" }],
+    "noEngineReferences": false
+}

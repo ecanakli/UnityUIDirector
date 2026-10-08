@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e71c6b3fdfd6b4826b19e1b5a920e24d, type: 3}
+  m_Name: NewsCatalog
+  m_EditorClassIdentifier: Ecanakli.UIDirector::Ecanakli.UIDirector.ViewCatalog
+  _entries:
+  - _id: news
+    _prefab: {fileID: 5698752519960242646, guid: 30d5ff46b216545d6b574dd34be61ba8, type: 3}
+    _assetKey: 
+    _layerId: popups
+    _retention: 0
+    _back: 0
+    _closeOnBackdrop: 0
+    _cover: 0
+    _whenCovered: 0
+    _allowMultiple: 0
