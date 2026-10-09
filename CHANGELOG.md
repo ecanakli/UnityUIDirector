@@ -2,6 +2,12 @@
 
 All notable changes to this package are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the package uses [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-10-09
+
+### Fixed
+
+- **The integration menus now write their define to iOS and Windows Store Apps.** `Tools/UIDirector/Zenject Integration` and `Tools/UIDirector/DOTween Integration` skipped every build target whose value the `BuildTargetGroup` enum shares with an obsolete name (`iOS` with `iPhone`, `WSA` with `Metro`), so a build for those targets compiled without the integration. If you turned an integration on with 0.1.0, choose its menu item twice after updating (off, then on) so the define reaches every target, or add it to those targets in Player Settings.
+
 ## [0.1.0] - 2026-10-08
 
 First release. Requires Unity 6000.0 or newer, UniTask and `com.unity.ugui`.

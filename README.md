@@ -28,17 +28,17 @@ https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask
 UniTask documents its other install routes in its own README. Then add UIDirector the same way:
 
 ```
-https://github.com/ecanakli/UnityUIDirector.git#v0.1.0
+https://github.com/ecanakli/UnityUIDirector.git#v0.1.1
 ```
 
 Or add both lines to the `dependencies` of `Packages/manifest.json` (the order does not matter):
 
 ```json
 "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-"com.ecanakli.uidirector": "https://github.com/ecanakli/UnityUIDirector.git#v0.1.0"
+"com.ecanakli.uidirector": "https://github.com/ecanakli/UnityUIDirector.git#v0.1.1"
 ```
 
-Always install a tag. Without `#v0.1.0` the install tracks the default branch.
+Always install a tag. Without `#v0.1.1` the install tracks the default branch.
 
 ### Then, depending on your setup
 
@@ -422,7 +422,7 @@ every page in reading order, and [llms-full.txt](llms-full.txt) is the whole doc
 
 ## Status and limits
 
-- Version 0.1.0. See the [changelog](CHANGELOG.md).
+- Version 0.1.1. See the [changelog](CHANGELOG.md).
 - Main thread only. Opening, registering and queueing throw on another thread; a few stop-type calls are
   posted to the main thread. See [Threading](Documentation~/Threading.md).
 - uGUI only, with a `Screen Space - Overlay` or `Screen Space - Camera` root. World-space UI and UI

@@ -1,6 +1,6 @@
 {
   "name": "com.ecanakli.uidirector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "displayName": "UIDirector",
   "description": "Runs your Screens, Popups & Overlays. Prefab views under one persistent root, typed keys, awaitable results, one back rule and a priority queue. Requires UniTask.",
   "unity": "6000.0",
